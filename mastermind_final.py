@@ -113,6 +113,6 @@ def start(code, duplicate=False, num_colors=5 ):
         state_list.append((A,B))
         
     state_list = format_state_list(state_list)
-    return(guess_list, state_list)
+    return guess_list, state_list 
 
 
