@@ -11,7 +11,7 @@ def givenum(num_colors, duplicate=False):
         num = np.random.choice(range(0,num_colors), 4, replace=True)
     else:
         num = random.sample(range(0,num_colors), 4)
-    return tuple(num)
+    return list(num)
 
 # Returns the result of the number of A and B
 # A = Correct Color + Correct position
@@ -51,7 +51,7 @@ def chooseone(code_set):
     #returns the index of the lowest value in remain_table
     mindex = np.argmin(remain_table)
     # the one with least average remaining eligible code is selected from the original codeset
-    return code_set[mindex]
+    return list(code_set[mindex])
 
 #initialize the code set from with al the possible permutations with 6 different "colors"
 def ini_population(num_colors,duplicate=False):
@@ -79,7 +79,9 @@ def format_state_list(state_list):
         formatted_state_list.append(new_state_list)
     return formatted_state_list
 #####################################################
-
+# code: list of 4-digit integers
+# duplicate: boolean
+# num_colors: integer
 def start(code, duplicate=False, num_colors=5 ):
     duplicate = True #decides if we want to work with duplicates
     num_colors = 5
@@ -87,7 +89,6 @@ def start(code, duplicate=False, num_colors=5 ):
     guess_list=[]
     state_list=[]
 
-    print('Secret code is', code)
     code_set = ini_population(num_colors,duplicate)  # Initialize a set of code set containing possible answer
 
     # Create a first guess randomly
