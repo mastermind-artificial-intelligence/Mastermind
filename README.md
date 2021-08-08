@@ -7,6 +7,7 @@ This is a program to guess the code. The algorithm implemented in this file can 
 To run the code with a randomly generated target and in an enviornment where there is a pool of 5 colors with no replacement, run the following:
 
 ```bash
+pip install -r requirements.txt
 python mastermind_final.py
 ```
 
