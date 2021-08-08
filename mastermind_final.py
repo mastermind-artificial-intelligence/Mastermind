@@ -3,14 +3,33 @@ import random
 from itertools import permutations
 import numpy as np
 import pandas as pd
+from random import sample
+from random import choices
 
+INDEX_COLORS = {
+  0: "red",
+  1: "blue",
+  2: "green",
+  3: "purple",
+  4: "yellow",
+  5: "orange",
+}
+
+COLORS_INDEX = {
+  "red": 0,
+  "blue": 1 ,
+  "green": 2,
+  "purple": 3,
+  "yellow": 4,
+  "orange": 5,
+}
 
 # For our permutation we reduce from 9 to 6 "colors" representede by digits and no duplicates
 def givenum(num_colors, duplicate=False):
     if duplicate:
         num = np.random.choice(range(0,num_colors), 4, replace=True)
     else:
-        num = random.sample(range(0,num_colors), 4)
+        num = sample(range(0,num_colors), 4)
     return list(num)
 
 # Returns the result of the number of A and B
@@ -78,6 +97,10 @@ def format_state_list(state_list):
 
         formatted_state_list.append(new_state_list)
     return formatted_state_list
+
+def format_guess_list(guess_list):
+    return [[INDEX_COLORS.get(index) for index in guess] for guess in guess_list]
+
 #####################################################
 # code: list of 4-digit integers
 # duplicate: boolean
@@ -112,7 +135,26 @@ def start(code, duplicate=False, num_colors=5 ):
         guess_list.append(guess)
         state_list.append((A,B))
 
+    guess_list = format_guess_list(guess_list)
     state_list = format_state_list(state_list)
     return guess_list, state_list
 
+if __name__ == "__main__":
+    num_colors = 5
+    replacement = False
+    COLORS_MAP = {
+        5: ["red", "blue", "green", "purple", "yellow"],
+        6: ["red", "blue", "green", "purple", "yellow", "orange"]
+    }
+    COLORS = COLORS_MAP.get(num_colors)
+    if replacement:
+        answer = choices(COLORS, k=4)
+    else:
+        answer = sample(COLORS, 4)
+    print(f'target: {answer}')
+    # convert colors to digits for algo to process
+    answer_num = [COLORS_INDEX.get(color) for color in answer]
+    board, state = start(answer_num, replacement, num_colors)
+    for index, board_value in enumerate(board):
+        print(f'iteration: {index} guess: {board_value} feedback: {state[index]}')
 
