@@ -68,12 +68,16 @@ The for loop in the while loop is to check whether we keep or remove the element
 <p align="center"><img src="/image/main_final.JPG"></p>
 
 ## 5. Result
+**Solver performance**
 
-We altered the configuration of the original code written by the author to suit our use case of 5/6 color choices
-The results for 6 choose 4 with no duplicates is 4.037 average guesses.<br />
-The results for 6 choose 4 with duplicates is 4.018 average guesses.<br />
-The results for 5 choose 4 with no duplicates is 3.887 average guesses.<br />
-The results for 5 choose 4 with duplicates is 3.712 average guesses.<br />
+Results
+
+| Color configuration | Allow Duplicates? | Average guesses (out of 1000) |
+| ------------------- | ----------------- | ----------------------------- |
+| 6 choose 4          | No                | 4.037                         |
+| 6 choose 4          | Yes               | 4.018                         |
+| 5 choose 4          | No                | 3.887                         |
+| 5 choose 4          | Yes               | 3.712                         |
 
 ## 6. Reference
 
