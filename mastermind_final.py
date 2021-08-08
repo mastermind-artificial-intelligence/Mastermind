@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 
-# For our permutation we reduce from 9 to 6 "colors" representede by digits and no duplicates  
+# For our permutation we reduce from 9 to 6 "colors" representede by digits and no duplicates
 def givenum(num_colors, duplicate=False):
     if duplicate:
         num = np.random.choice(range(0,num_colors), 4, replace=True)
@@ -36,7 +36,7 @@ def chooseone(code_set):
         # if there is more than 100 combinations in the code set, we randomly sample 100
         if (len(code_idx) > 100):
             S = random.sample(code_idx, 100)
-        # else we take all? 
+        # else we take all?
         else:
             S = random.sample(code_idx, len(code_idx))
         remain = 0
@@ -53,7 +53,7 @@ def chooseone(code_set):
     # the one with least average remaining eligible code is selected from the original codeset
     return list(code_set[mindex])
 
-#initialize the code set from with al the possible permutations with 6 different "colors"
+#initialize the code set from with all the possible permutations with 6 different "colors"
 def ini_population(num_colors,duplicate=False):
     if duplicate:
         population = itertools.product(list(range(0,num_colors)), repeat=4)
@@ -63,7 +63,7 @@ def ini_population(num_colors,duplicate=False):
 
 def format_state_list(state_list):
     formatted_state_list = []
-    
+
     for each_state in state_list:
         new_state_list =[]
         blacks = each_state[0]
@@ -75,7 +75,7 @@ def format_state_list(state_list):
             new_state_list.append("white")
         for i in range(default):
             new_state_list.append("default")
-            
+
         formatted_state_list.append(new_state_list)
     return formatted_state_list
 #####################################################
@@ -96,23 +96,23 @@ def start(code, duplicate=False, num_colors=5 ):
 
 
     # Get the feedback value with guess and code
-    A, B = playresult(code, guess) 
+    A, B = playresult(code, guess)
 
     play_count = 1  # store the value of the number of guessing in this play
-    
+
     guess_list.append(guess)
     state_list.append((A,B))
 
     while (A < 4):  # Still cleaning the code_set until we find the real answer
         play_count = play_count + 1
-        code_set = [t for t in code_set if playresult(t, guess) == (A, B)] 
-        
-        guess = chooseone(code_set) 
-        A, B = playresult(code, guess)     
+        code_set = [t for t in code_set if playresult(t, guess) == (A, B)]
+
+        guess = chooseone(code_set)
+        A, B = playresult(code, guess)
         guess_list.append(guess)
         state_list.append((A,B))
-        
+
     state_list = format_state_list(state_list)
-    return guess_list, state_list 
+    return guess_list, state_list
 
 
