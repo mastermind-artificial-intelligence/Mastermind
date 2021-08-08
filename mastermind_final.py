@@ -75,7 +75,6 @@ def chooseone(code_set):
         remain = 0
         for idxx in S:   #  each idxx acts like answer, we play it out again and see how many remaining eligible one remains
             A, B = playresult(code_set[idxx], code_set[idx])
-            print(code_set[idxx], code_set[idx], A, B)
             for k in S:
                 a, b = playresult(code_set[k], code_set[idx])
                 if (a == A and b == B):
@@ -90,7 +89,7 @@ def chooseone(code_set):
 
 
 def ini_population(num_colors,duplicate=False):
-    """initialize the code set from with all the possible permutations with 6 different "colors""""
+    """initialize the code set from with all the possible permutations with 6 different "colors"""
     if duplicate:
         population = itertools.product(list(range(0,num_colors)), repeat=4)
     else:
