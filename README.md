@@ -2,7 +2,17 @@
 
 This is a program to guess the code. The algorithm implemented in this file can reach about 5.18 times of guessing in average. You can find two python file. The `mastermind_final.ipynb` file is a breakdown explanation on playing one time game. The `mastermind_final.py` file is to obtain the average number of guessing times after playing 10000 times. Recently, our algorithm is able to obtain average guessing time 5.18 for 10000 plays. The maximum guessing time is 7. You can find the result from the .csv file `mastermind_final.csv`. If we don't adopt our unique algorithm, the result is 5.45 times of guessing in average.
 
-## 1. About the game<br />
+## 1. Running the code
+
+To run the code with a randomly generated target and in an enviornment where there is a pool of 5 colors with no replacement, run the following:
+
+```bash
+python mastermind_final.py
+```
+
+To adjust the configuration, modify the `num_colors` and `replacement` parameters in the `if __name__ == "__main__":` block.
+
+## 2. About the game<br />
 
 This game also names Bulls and Cows and it involves two persons(ex. Tom, Jack). Each of the player will think of a sequence of 4 digit number without duplicate such as 1234 or 4705. One of the player need to guess another player's answer. During the guessing process, Tom will guess a sequence of number and Jack will response the guessing with two number **A** and **B**. **A** represents the number of digit with correct value as well as the correct position. **B** represents the number of digit with correct value but wrong position. Tom will give another guess based on the information of A and B and then Jack will give another A, B value as response. The guessing process will terminate untill Tom comes up with the right answer of Jack.<br />
 
@@ -10,7 +20,7 @@ Example: If the real answer is 5032 and our guess is 4023. Then A = 1 because "0
 
 It is proven that any number could be solved within seven turns. <br />
 
-## 2. How we design the program<br />
+## 3. How we design the program<br />
 
 We have a code set containing 5040 combination of 4 digit number without duplicate. We first randomly use a guess and receive the response of A and B. Based on the value of A and B, we remove the element from the code set which is not going to be the correct answer. We then pick up an element from the code set for the next play and receive A and B value. The method of how we pick up the element for the next play will be elaborate more later. We will keep guessing until we get A=4 and B=0 (it means we get 4 digit with correct position and value).<br />
 
@@ -32,7 +42,7 @@ We don't expect the chosen one for the next play to be the true answer, our goal
 
 <p align="center"><img src="/image/structure_final.JPG"></p>
 
-## 3. The Code and the explanation<br />
+## 4. The Code and the explanation<br />
 
 1. import library. "random" can generate random number. "itertools" can help us to loop through all the element in a list.<br />
 <p align="center"><img src="/image/1.JPG"></p>
@@ -56,7 +66,7 @@ We don't expect the chosen one for the next play to be the true answer, our goal
 The for loop in the while loop is to check whether we keep or remove the element from the code set. The element to be removed is the one which can not give us the same value of A and B based on our guess. After cleaning the code set, we pick up one element from the code set to act as the next guess. The picking method has already elaborated in the previous section. This guess will play against the true answer and receive A and B value. The while loop will end when we get the guess with A=4. Lastly, the program output the number of time we play to get the true answer. <br />
 <p align="center"><img src="/image/main_final.JPG"></p>
 
-## 4. Result
+## 5. Result
 
 We altered the configuration of the original code written by the author to suit our use case of 5/6 color choices
 The results for 6 choose 4 with no duplicates is 4.037 average guesses.<br />
@@ -64,7 +74,7 @@ The results for 6 choose 4 with duplicates is 4.018 average guesses.<br />
 The results for 5 choose 4 with no duplicates is 3.887 average guesses.<br />
 The results for 5 choose 4 with duplicates is 3.712 average guesses.<br />
 
-## 5. Reference
+## 6. Reference
 
 NCCU(in Chinese): http://www.cs.nccu.edu.tw/~chaolin/papers/science3203.pdf <br />
 Genetic algorithms: https://www.sciencedirect.com/science/article/pii/S030505480800110X <br />
