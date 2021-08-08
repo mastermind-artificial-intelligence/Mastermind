@@ -48,7 +48,7 @@ def playresult(notknow, guess):
         else:
             temp_notknow.append(notknow[i])
             temp_guess.append(guess[i])
-    for guess in temp_guess:
+    for guess in temp_guess: #checking for whites only
         if guess in temp_notknow:
             B = B + 1 
             idx = temp_notknow.index(guess)
