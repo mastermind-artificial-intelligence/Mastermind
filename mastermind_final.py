@@ -35,22 +35,22 @@ def givenum(num_colors, duplicate=False):
 # Returns the result of the number of A and B
 # A = Correct Color + Correct position
 # B = Correct Color + wrong position
-# Changed logic of calculation to factor in for duplicate scenario not originally present in the code 
+# Changed logic of calculation to factor in for duplicate scenario not originally present in the code
 def playresult(notknow, guess):
     A = 0
     B = 0
     temp_notknow = []
     temp_guess = []
-    
+
     for i in range(len(notknow)): # checking for blacks only, and remove them from the list
         if notknow[i] == guess[i]:
-            A = A + 1      
+            A = A + 1
         else:
             temp_notknow.append(notknow[i])
             temp_guess.append(guess[i])
     for guess in temp_guess:
         if guess in temp_notknow:
-            B = B + 1 
+            B = B + 1
             idx = temp_notknow.index(guess)
             del temp_notknow[idx]
 
@@ -72,7 +72,6 @@ def chooseone(code_set):
         remain = 0
         for idxx in S:   #  each idxx acts like answer, we play it out again and see how many remaining eligible one remains
             A, B = playresult(code_set[idxx], code_set[idx])
-            print(code_set[idxx], code_set[idx], A, B)
             for k in S:
                 a, b = playresult(code_set[k], code_set[idx])
                 if (a == A and b == B):
